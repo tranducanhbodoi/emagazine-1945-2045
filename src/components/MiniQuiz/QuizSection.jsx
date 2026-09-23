@@ -298,8 +298,8 @@ export default function QuizSection() {
             MINI QUIZ LỊCH SỬ
           </h2>
           <p
-            className="text-xl sm:text-2xl text-[#1B1717] mt-2 font-normal"
-            style={{ fontFamily: FONT_ACME }}
+            className="text-xl sm:text-2xl text-[#1B1717] mt-2 font-normal text-center !text-center mx-auto"
+            style={{ fontFamily: FONT_ACME, textAlign: 'center' }}
           >
             Hành trình Đổi mới của Việt Nam từ 1945 đến 2045 &amp; Tầm nhìn 2130
           </p>

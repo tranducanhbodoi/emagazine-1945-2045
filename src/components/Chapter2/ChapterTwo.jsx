@@ -357,10 +357,10 @@ export default function ChapterTwo() {
            ================================================================= */}
         <div className="mb-24 sm:mb-32 max-w-6xl mx-auto">
           <div className="text-center mb-10">
-            <span className="text-xs font-bold text-[#810100] uppercase tracking-widest">
+            <span className="text-xs font-bold text-[#810100] uppercase tracking-widest block mb-3.5 sm:mb-4">
               Động lực kỷ nguyên mới
             </span>
-            <h4 className="font-anton text-3xl sm:text-4xl md:text-5xl text-[#1B1717] uppercase tracking-wide mt-1">
+            <h4 className="font-anton text-3xl sm:text-4xl md:text-5xl text-[#1B1717] uppercase tracking-wide mt-3 leading-tight">
               Đột Phá Khoa Học Công Nghệ & Nâng Tầm Vị Thế Quốc Gia
             </h4>
           </div>
@@ -389,7 +389,8 @@ export default function ChapterTwo() {
                 </div>
 
                 <h5 className="font-anton text-2xl sm:text-3xl text-white uppercase mb-4 leading-snug">
-                  Làm chủ AI, Công nghệ Bán dẫn và Kinh tế Tri thức
+                  <span className="inline-block">Làm chủ AI, Công nghệ Bán dẫn</span>{' '}
+                  <span className="inline-block">và Kinh tế Tri thức</span>
                 </h5>
 
                 <p className="text-sm sm:text-base text-neutral-300 leading-relaxed font-normal mb-6">
@@ -481,7 +482,10 @@ export default function ChapterTwo() {
               >
                 <Quote className="w-14 h-14 text-[#EDEBDD]/20 mb-4" />
 
-                <blockquote className="font-sans text-2xl sm:text-3xl md:text-4xl font-bold leading-snug tracking-normal mb-8 text-[#FAF9F5]">
+                <blockquote 
+                  className="font-sans text-2xl sm:text-3xl md:text-4xl font-bold leading-snug tracking-normal mb-8 text-[#FAF9F5] text-justify"
+                  style={{ textAlign: 'justify', textJustify: 'inter-word' }}
+                >
                   “Đây là thời điểm “hội tụ” tổng hòa các lợi thế, sức mạnh để đưa đất nước bước vào kỷ nguyên mới, kỷ nguyên vươn mình của dân tộc.”
                 </blockquote>
 

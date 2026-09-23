@@ -8,15 +8,8 @@ import {
   Info
 } from 'lucide-react';
 
-// 6 historical milestones
+// 5 historical milestones
 const TIMELINE_DATA = [
-  {
-    date: '3/2/1930',
-    year: '1930',
-    title: 'Thành lập Đảng Cộng sản Việt Nam',
-    summary: 'Bước ngoặt vĩ đại của cách mạng Việt Nam, chấm dứt khủng hoảng đường lối cứu nước.',
-    detail: 'Hội nghị hợp nhất các tổ chức cộng sản họp tại Cửu Long (Hương Cảng, Trung Quốc) dưới sự chủ trì của đồng chí Nguyễn Ái Quốc. Đảng ra đời đã mở ra bước ngoặt quyết định cho phong trào giải phóng dân tộc Việt Nam, soi đường dẫn lối đưa nhân dân ta đi từ thắng lợi này đến thắng lợi khác.'
-  },
   {
     date: '2/9/1945',
     year: '1945',
@@ -101,7 +94,7 @@ export default function ChapterOne() {
           <div className="relative w-full aspect-video rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl border border-neutral-300/80 bg-neutral-900 group">
             <iframe
               className="w-full h-full border-0"
-              src="https://www.youtube.com/embed/n0xzTSzdEsI?autoplay=0&rel=0&playsinline=1&modestbranding=1"
+              src="https://www.youtube.com/embed/vLb72bW_mHU?autoplay=0&rel=0&playsinline=1&modestbranding=1"
               title="Sức mạnh lòng dân - Nguồn lực quyết định mọi thắng lợi lịch sử"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen

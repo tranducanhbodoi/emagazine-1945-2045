@@ -135,8 +135,12 @@ export default function ChapterThree() {
 
                 {/* Quote Text */}
                 <blockquote
-                  className="text-base sm:text-2xl md:text-3xl font-medium text-[#EDEBDD] leading-relaxed sm:leading-snug md:leading-relaxed mb-4 sm:mb-6 italic"
-                  style={{ fontFamily: FONT_GOOGLE_SANS }}
+                  className="text-base sm:text-2xl md:text-3xl font-medium text-[#EDEBDD] leading-relaxed sm:leading-snug md:leading-relaxed mb-4 sm:mb-6 italic text-justify"
+                  style={{ 
+                    fontFamily: FONT_GOOGLE_SANS,
+                    textAlign: 'justify',
+                    textJustify: 'inter-word'
+                  }}
                 >
                   “Bài học sâu sắc, có ý nghĩa đặc biệt quan trọng, đó là sự nghiệp cách mạng là của Nhân dân, do Nhân dân, vì Nhân dân. Nhân dân vừa là người làm nên những thắng lợi lịch sử, vừa là nguồn sức mạnh vô tận để Đảng tồn tại và phát triển”.
                 </blockquote>
@@ -219,18 +223,18 @@ export default function ChapterThree() {
           {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
             <span
-              className="text-xs sm:text-sm font-bold text-[#810100] uppercase tracking-[0.2em] block mb-2"
+              className="text-xs sm:text-sm font-bold text-[#810100] uppercase tracking-[0.2em] block mb-3.5 sm:mb-4"
               style={{ fontFamily: FONT_ACME }}
             >
               CHIẾN LƯỢC PHÁT TRIỂN DÂN TỘC
             </span>
             <h3
-              className="text-3xl sm:text-4xl md:text-5xl font-normal text-[#1B1717] uppercase tracking-tight"
+              className="text-3xl sm:text-4xl md:text-5xl font-normal text-[#1B1717] uppercase tracking-tight mt-3 sm:mt-4 leading-tight"
               style={{ fontFamily: FONT_ANTON }}
             >
               Hai Mốc Son Lịch Sử 100 Năm
             </h3>
-            <div className="w-16 h-1.5 bg-[#810100] mx-auto mt-4 rounded-full" />
+            <div className="w-16 h-1.5 bg-[#810100] mx-auto mt-5 rounded-full" />
           </div>
 
           {/* Narrative lead text */}
@@ -257,8 +261,8 @@ export default function ChapterThree() {
               
               <div className="flex items-center justify-between mb-6">
                 <span
-                  className="text-5xl sm:text-6xl font-black text-[#810100] tracking-tight"
-                  style={{ fontFamily: FONT_ANTON }}
+                  className="text-5xl sm:text-6xl font-black text-[#810100] tracking-wide"
+                  style={{ fontFamily: FONT_ANTON, letterSpacing: '0.08em' }}
                 >
                   2030
                 </span>
@@ -304,8 +308,8 @@ export default function ChapterThree() {
               
               <div className="flex items-center justify-between mb-6">
                 <span
-                  className="text-5xl sm:text-6xl font-black text-[#630000] tracking-tight"
-                  style={{ fontFamily: FONT_ANTON }}
+                  className="text-5xl sm:text-6xl font-black text-[#630000] tracking-wide"
+                  style={{ fontFamily: FONT_ANTON, letterSpacing: '0.08em' }}
                 >
                   2045
                 </span>
@@ -486,7 +490,8 @@ export default function ChapterThree() {
                   className="text-2xl sm:text-3xl md:text-4xl text-[#EDEBDD] leading-tight mb-4 font-normal"
                   style={{ fontFamily: FONT_ANTON }}
                 >
-                  QUỐC GIA XHCN PHÁT TRIỂN TRÌNH ĐỘ CAO, VĂN MINH & HIỆN ĐẠI
+                  <span className="inline-block">QUỐC GIA XHCN PHÁT TRIỂN TRÌNH ĐỘ CAO,</span>{' '}
+                  <span className="inline-block">VĂN MINH & HIỆN ĐẠI</span>
                 </h4>
 
                 <p

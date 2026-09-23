@@ -71,7 +71,7 @@ export default function Chapter1() {
           className="mb-16">
           <div className="video-wrap shadow-xl" style={{ border:`1px solid rgba(129,1,0,.15)` }}>
             <iframe
-              src="https://www.youtube.com/embed/n0xzTSzdEsI?rel=0"
+              src="https://www.youtube.com/embed/vLb72bW_mHU?rel=0"
               title="Hành trình lịch sử Việt Nam"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen />
