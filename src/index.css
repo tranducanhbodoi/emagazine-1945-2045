@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,600;1,700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&family=Oswald:wght@500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-anton: 'Anton', 'Oswald', 'Be Vietnam Pro', sans-serif;
+  --font-acme: 'Be Vietnam Pro', 'Plus Jakarta Sans', sans-serif;
+  --font-sans: 'Google Sans', 'Plus Jakarta Sans', 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Google Sans', 'Plus Jakarta Sans', 'Be Vietnam Pro', sans-serif;
+  --font-serif: 'Playfair Display', 'Lora', serif;
+  --color-brand-cream: #EDEBDD;
+  --color-brand-cream-light: #EDEBDD;
+  --color-brand-red: #810100;
+  --color-brand-darkred: #630000;
+  --color-brand-dark: #1B1717;
+}
+
+:root {
+  --cream: #EDEBDD;
+  --cream-light: #EDEBDD;
+  --red: #810100;
+  --red-dark: #630000;
+  --dark: #1B1717;
+  --font-anton: 'Anton', 'Oswald', 'Be Vietnam Pro', sans-serif;
+  --font-acme: 'Be Vietnam Pro', 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Google Sans', 'Plus Jakarta Sans', 'Be Vietnam Pro', sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: #EDEBDD;
+  color: #1B1717;
+  overflow-x: hidden;
+  line-height: 1.75;
+}
+
+.font-anton {
+  font-family: var(--font-anton) !important;
+}
+
+.font-acme {
+  font-family: var(--font-acme) !important;
+}
+
+.font-body {
+  font-family: var(--font-body) !important;
+}
+
+/* Editorial paragraph justification: Straight margins on both left & right, no ragged edges */
+p {
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
+
+/* Specific alignment utility overrides */
+.text-justify, p.text-justify {
+  text-align: justify !important;
+  text-justify: inter-word !important;
+}
+
+.text-left, p.text-left {
+  text-align: left !important;
+}
+
+.text-center, p.text-center {
+  text-align: center !important;
+}
+
+.text-right, p.text-right {
+  text-align: right !important;
+}
+
+/* 16:9 Video & Banner Container */
+.aspect-16-9 {
+  aspect-ratio: 16 / 9;
+}
+
+/* Dissolve edge effect for Scrollytelling image */
+.mask-dissolve-left {
+  mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 15%, black 35%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 15%, black 35%);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #1B1717;
+}
+::-webkit-scrollbar-thumb {
+  background: #810100;
+  border-radius: 3px;
+}
