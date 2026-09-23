@@ -96,26 +96,26 @@ export default function ChapterThree() {
             <img
               src="/image/tong-bi-thu-to-lam-1760421524119147116639.jpg"
               alt="Tổng Bí thư, Chủ tịch nước Tô Lâm"
-              className="w-full h-full object-cover object-[70%_25%] sm:object-[65%_center] filter brightness-[0.82] contrast-[1.08]"
+              className="w-full h-full object-cover object-[85%_20%] sm:object-[82%_25%] md:object-[80%_center] filter brightness-[0.85] contrast-[1.08]"
               onError={(e) => {
                 e.target.src = '/images/to-lam/to-lam-4.jpg';
               }}
             />
             {/* Cinematic Gradient Overlays */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#1B1717] via-[#1B1717]/90 sm:via-[#1B1717]/75 to-transparent w-full md:w-3/4 z-10" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#1B1717] via-[#1B1717]/85 sm:via-[#1B1717]/55 to-transparent w-full md:w-3/5 z-10" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#1B1717] via-transparent to-black/40 z-10" />
             <div className="absolute top-1/4 left-10 w-96 h-96 bg-[#810100]/30 rounded-full blur-3xl pointer-events-none z-10" />
           </div>
 
           {/* Text Container with Framer Motion Slide-in from Left */}
           <div className="relative z-20 max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-10 sm:py-24 w-full">
-            <div className="max-w-2xl lg:max-w-3xl">
+            <div className="max-w-xl lg:max-w-[540px] xl:max-w-[580px]">
               <motion.div
                 initial={{ opacity: 0, x: -80 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1.2, ease: 'easeOut' }}
-                className="bg-[#1B1717]/85 sm:bg-[#1B1717]/75 backdrop-blur-md p-5 sm:p-10 md:p-12 rounded-2xl sm:rounded-3xl border border-[#EDEBDD]/20 shadow-2xl relative"
+                className="bg-[#1B1717]/85 sm:bg-[#1B1717]/80 backdrop-blur-md p-5 sm:p-9 md:p-10 rounded-2xl sm:rounded-3xl border border-[#EDEBDD]/20 shadow-2xl relative"
               >
                 {/* Decorative Quote Icon */}
                 <div className="absolute -top-4 -left-2 sm:-top-5 sm:-left-5 w-9 h-9 sm:w-12 sm:h-12 rounded-xl bg-[#810100] border-2 border-[#EDEBDD]/40 flex items-center justify-center shadow-lg text-[#EDEBDD]">

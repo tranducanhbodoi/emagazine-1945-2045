@@ -193,13 +193,29 @@ export default function ChapterTwo() {
            ================================================================= */}
         <div className="mb-24 sm:mb-32 max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <span className="text-xs font-bold text-[#810100] uppercase tracking-widest">
+            <span className="text-xs font-bold text-[#810100] uppercase tracking-widest block mb-1">
               Đột phá thể chế & Hành chính
             </span>
-            <h4 className="font-anton text-3xl sm:text-4xl md:text-5xl text-[#1B1717] uppercase tracking-wide mt-1">
+            <h4 
+              className="font-anton text-[#1B1717] uppercase tracking-wide mt-2 leading-tight mx-auto text-center w-full"
+              style={{
+                fontSize: 'clamp(16px, 2.3vw, 34px)',
+                whiteSpace: 'nowrap',
+                letterSpacing: '0.03em'
+              }}
+            >
               Tái Cấu Trúc Bộ Máy Gọn Nhẹ: 34 Tỉnh, Thành Phố Vận Hành 2 Cấp
             </h4>
-            <p className="text-sm sm:text-base text-neutral-600 max-w-3xl mx-auto mt-2">
+            <p 
+              className="text-sm sm:text-base text-neutral-600 max-w-2xl mx-auto mt-3 text-center !text-center" 
+              style={{ 
+                textAlign: 'center', 
+                textJustify: 'none',
+                textWrap: 'balance',
+                marginLeft: 'auto',
+                marginRight: 'auto'
+              }}
+            >
               Khơi thông điểm nghẽn, tạo xung lực kiến tạo phát triển với tinh thần “địa phương quyết, địa phương làm, địa phương chịu trách nhiệm”.
             </p>
           </div>
