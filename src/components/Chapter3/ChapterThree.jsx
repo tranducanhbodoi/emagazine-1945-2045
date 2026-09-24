@@ -124,10 +124,10 @@ export default function ChapterThree() {
 
                 {/* Subtitle tag */}
                 <div className="flex items-center gap-2 mb-3 sm:mb-4 pt-1">
-                  <span className="w-2 h-2 rounded-full bg-[#810100] animate-ping" />
+                  <span className="w-2 h-2 rounded-full bg-[#810100] animate-ping flex-shrink-0" />
                   <span
-                    className="text-[11px] sm:text-sm font-bold tracking-[0.15em] sm:tracking-[0.2em] text-[#EDEBDD] uppercase"
-                    style={{ fontFamily: FONT_GOOGLE_SANS }}
+                    className="text-[11px] sm:text-xs md:text-sm font-bold tracking-wider text-[#EDEBDD] uppercase whitespace-nowrap"
+                    style={{ fontFamily: FONT_GOOGLE_SANS, whiteSpace: 'nowrap', letterSpacing: '0.05em' }}
                   >
                     BÀI HỌC SÂU SẮC • Ý NGHĨA ĐẶC BIỆT QUAN TRỌNG
                   </span>

@@ -483,10 +483,10 @@ export default function ChapterTwo() {
                 <Quote className="w-14 h-14 text-[#EDEBDD]/20 mb-4" />
 
                 <blockquote 
-                  className="font-sans text-2xl sm:text-3xl md:text-4xl font-bold leading-snug tracking-normal mb-8 text-[#FAF9F5] text-justify"
+                  className="font-sans text-xl sm:text-2xl md:text-[28px] lg:text-[32px] font-bold leading-snug sm:leading-relaxed tracking-normal mb-8 text-[#FAF9F5] text-justify"
                   style={{ textAlign: 'justify', textJustify: 'inter-word' }}
                 >
-                  “Đây là thời điểm “hội tụ” tổng hòa các lợi thế, sức mạnh để đưa đất nước bước vào kỷ nguyên mới, kỷ nguyên vươn mình của dân tộc.”
+                  “Đây là thời điểm “hội tụ” tổng hòa các lợi thế, sức mạnh để đưa đất nước bước vào kỷ nguyên mới, kỷ nguyên vươn mình <span className="inline-block">của dân tộc.”</span>
                 </blockquote>
 
                 <div className="pt-6 border-t border-[#EDEBDD]/20 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
