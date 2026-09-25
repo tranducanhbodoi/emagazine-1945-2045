@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   TrendingUp,
   Ship,
@@ -16,7 +16,10 @@ import {
   Camera,
   Layers,
   Home,
-  CheckCircle2
+  CheckCircle2,
+  ZoomIn,
+  Maximize2,
+  X
 } from 'lucide-react';
 import VietnamMap from './VietnamMap';
 import InfrastructureSlider from './InfrastructureSlider';
@@ -60,6 +63,8 @@ const ECONOMIC_STATS = [
 ];
 
 export default function ChapterTwo() {
+  const [showInfographicModal, setShowInfographicModal] = useState(false);
+
   return (
     <section id="chuong-2" className="bg-[#FAF9F5] text-neutral-800 py-16 sm:py-24 border-t border-neutral-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -96,25 +101,38 @@ export default function ChapterTwo() {
         </motion.div>
 
         {/* =================================================================
-            2. INFOGRAPHIC DASHBOARD (BỐN THẬP KỶ ĐỔI MỚI 1986–2026)
+            2. BỐN THẬP KỶ ĐỔI MỚI (1986–2026)
            ================================================================= */}
         <div className="mb-24 sm:mb-32 max-w-6xl mx-auto">
-          
-          {/* Section Header with INFOGRAPHIC Tag */}
-          <div className="text-center mb-8">
-            <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#810100] text-[#EDEBDD] text-xs font-anton tracking-widest uppercase">
-              <Layers className="w-3.5 h-3.5" />
-              INFOGRAPHIC
-            </span>
-            <h4 className="font-anton text-2xl sm:text-3xl md:text-4xl text-[#1B1717] uppercase tracking-wide mt-3">
+          {/* Section Title */}
+          <div className="text-center mb-10">
+            <h4 className="font-anton text-2xl sm:text-3xl md:text-4xl text-[#1B1717] uppercase tracking-wide">
               Những Bước Tiến Ngoạn Mục Của Nền Kinh Tế Năng Động
             </h4>
           </div>
 
-          {/* Narrative context paragraphs before cards */}
-          <div className="space-y-4 mb-10 max-w-4xl mx-auto text-base sm:text-lg text-neutral-700 leading-relaxed">
+          {/* Main Visual Image (Above Text) */}
+          <div className="mb-12 max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="w-full flex justify-center cursor-pointer"
+              onClick={() => setShowInfographicModal(true)}
+            >
+              <img
+                src="/image/infographic-bon-thap-nien-doi-moi.png"
+                alt="Bốn thập niên Đổi mới (1986–2026)"
+                className="w-full h-auto rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-neutral-200/90 object-contain"
+              />
+            </motion.div>
+          </div>
+
+          {/* Narrative context paragraphs (Below Image) */}
+          <div className="space-y-4 mb-14 max-w-4xl mx-auto text-base sm:text-lg text-neutral-700 leading-relaxed text-justify" style={{ textAlign: 'justify', textJustify: 'inter-word' }}>
             <p>
-              Hành trình bốn thập kỷ Đổi mới (1986-2026) đã tạo nên những bước tiến ngoạn mục. Vào năm 2025, tốc độ tăng trưởng GDP đạt <strong>8,02%</strong>; đà tăng này tiếp tục được duy trì ở mức <strong>8,18%</strong> trong nửa đầu năm 2026, tạo nền tảng vững chắc để hướng tới các mục tiêu tăng trưởng hai con số. Quy mô giao thương quốc tế bứt phá mạnh mẽ khi tổng kim ngạch xuất nhập khẩu năm 2025 cán mốc hơn <strong>930 tỷ USD</strong>, mang lại giá trị xuất siêu <strong>20,03 tỷ USD</strong> và ghi dấu chuỗi 10 năm liên tiếp xuất siêu. Sáu tháng đầu năm 2026, kim ngạch xuất, nhập khẩu đạt <strong>549,69 tỷ USD</strong>, tăng 27% so với cùng kỳ.
+              Hành trình bốn thập kỷ Đổi mới (1986–2026) đã tạo nên những bước tiến ngoạn mục. Vào năm 2025, tốc độ tăng trưởng GDP đạt <strong>8,02%</strong>; đà tăng này tiếp tục được duy trì ở mức <strong>8,18%</strong> trong nửa đầu năm 2026, tạo nền tảng vững chắc để hướng tới các mục tiêu tăng trưởng hai con số. Quy mô giao thương quốc tế bứt phá mạnh mẽ khi tổng kim ngạch xuất nhập khẩu năm 2025 cán mốc hơn <strong>930 tỷ USD</strong>, mang lại giá trị xuất siêu <strong>20,03 tỷ USD</strong> và ghi dấu chuỗi 10 năm liên tiếp xuất siêu. Sáu tháng đầu năm 2026, kim ngạch xuất, nhập khẩu đạt <strong>549,69 tỷ USD</strong>, tăng 27% so với cùng kỳ.
             </p>
             <p>
               Những dữ liệu kinh tế ấn tượng này phản ánh bức tranh toàn cảnh về một nền kinh tế năng động và tích cực hội nhập. Việt Nam đã trở thành điểm đến ưu tiên của dòng vốn đầu tư quốc tế. Đến cuối năm 2025, cả nước có hơn <strong>45.400 dự án FDI</strong> còn hiệu lực với tổng vốn đăng ký xấp xỉ <strong>529,6 tỷ USD</strong>. Chỉ trong nửa đầu năm 2026, dòng vốn FDI đăng ký mới đã đạt <strong>34,65 tỷ USD</strong>, tăng 61%. Đáng chú ý, cơ cấu dòng vốn đầu tư ngày càng hướng tới chất lượng cao, tập trung vào công nghệ tiên tiến, đổi mới sáng tạo và tăng cường liên kết với các doanh nghiệp nội địa.
@@ -506,6 +524,41 @@ export default function ChapterTwo() {
         </div>
 
       </div>
+
+      {/* Lightbox Modal for Infographic Fullscreen View */}
+      <AnimatePresence>
+        {showInfographicModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
+            onClick={() => setShowInfographicModal(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              className="relative max-w-4xl max-h-[92vh] bg-white rounded-3xl p-3 sm:p-5 shadow-2xl overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                type="button"
+                onClick={() => setShowInfographicModal(false)}
+                className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/70 hover:bg-red-700 text-white flex items-center justify-center transition-colors shadow-lg cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              <img
+                src="/image/infographic-bon-thap-nien-doi-moi.png"
+                alt="Infographic Bốn thập niên Đổi mới (1986–2026)"
+                className="w-full h-auto rounded-2xl object-contain mx-auto"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
