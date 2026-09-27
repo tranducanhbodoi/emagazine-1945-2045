@@ -271,7 +271,7 @@ export const PROVINCES_34 = [
   },
   {
     id: 27,
-    name: "TP. Hồ Chí Minh (TP.HCM + Bình Dương + Bà Rịa Vũng Tàu)",
+    name: "TP. Hồ Chí Minh (TP.HCM + Bình Dương + Bà Rịa - Vũng Tàu)",
     shortName: "TP. Hồ Chí Minh",
     type: "Thành phố sáp nhập mới",
     isMerged: true,

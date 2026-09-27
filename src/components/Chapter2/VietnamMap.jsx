@@ -272,13 +272,13 @@ export default function VietnamMap() {
                 <polygon points="568,391 570,396 576,397 571,400 573,405 568,402 563,405 565,400 560,397 566,396" fill="#810100" />
 
                 {/* Title */}
-                <text x="586" y="398" fill="#EDEBDD" fontSize="12" fontWeight="bold" fontFamily="Anton, sans-serif" letterSpacing="0.8">
+                <text x="586" y="398" fill="#EDEBDD" fontSize="12" fontWeight="bold" fontFamily="'Be Vietnam Pro', 'Oswald', sans-serif" letterSpacing="0.8">
                   QUẦN ĐẢO HOÀNG SA
                 </text>
-                <text x="586" y="415" fill="#EDEBDD" fontSize="9.5" opacity="0.95">
+                <text x="586" y="415" fill="#EDEBDD" fontSize="9.5" opacity="0.95" fontFamily="'Be Vietnam Pro', sans-serif">
                   (Thuộc TP. Đà Nẵng)
                 </text>
-                <text x="586" y="432" fill="#FFD700" fontSize="8.5" fontWeight="bold">
+                <text x="586" y="432" fill="#FFD700" fontSize="8.5" fontWeight="bold" fontFamily="'Be Vietnam Pro', sans-serif">
                   16°30'B - 112°00'Đ
                 </text>
 
@@ -318,13 +318,13 @@ export default function VietnamMap() {
                 <polygon points="563,793 565,798 571,799 566,802 568,807 563,804 558,807 560,802 555,799 561,798" fill="#810100" />
 
                 {/* Title */}
-                <text x="581" y="800" fill="#EDEBDD" fontSize="12" fontWeight="bold" fontFamily="Anton, sans-serif" letterSpacing="0.8">
+                <text x="581" y="800" fill="#EDEBDD" fontSize="12" fontWeight="bold" fontFamily="'Be Vietnam Pro', 'Oswald', sans-serif" letterSpacing="0.8">
                   QUẦN ĐẢO TRƯỜNG SA
                 </text>
-                <text x="581" y="817" fill="#EDEBDD" fontSize="9.5" opacity="0.95">
+                <text x="581" y="817" fill="#EDEBDD" fontSize="9.5" opacity="0.95" fontFamily="'Be Vietnam Pro', sans-serif">
                   (Thuộc Tỉnh Khánh Hòa)
                 </text>
-                <text x="581" y="834" fill="#FFD700" fontSize="8.5" fontWeight="bold">
+                <text x="581" y="834" fill="#FFD700" fontSize="8.5" fontWeight="bold" fontFamily="'Be Vietnam Pro', sans-serif">
                   10°00'B - 114°00'Đ
                 </text>
 
@@ -340,7 +340,7 @@ export default function VietnamMap() {
               </g>
 
               {/* Island Labels: Đảo Phú Quốc, Côn Đảo */}
-              <g fill="#810100" fontSize="10" fontFamily="Anton, sans-serif" fontWeight="bold">
+              <g fill="#810100" fontSize="10" fontFamily="'Be Vietnam Pro', 'Oswald', sans-serif" fontWeight="bold">
                 <text x="180" y="895" textAnchor="middle">Đ. PHÚ QUỐC</text>
                 <text x="350" y="945" textAnchor="middle">CÔN ĐẢO</text>
               </g>
@@ -374,35 +374,40 @@ export default function VietnamMap() {
           </div>
         </div>
 
-        {/* Right Column: Exactly Locked Constant Height to PREVENT ANY JITTER */}
-        <div className="lg:col-span-5 flex flex-col justify-between h-[740px] lg:h-[820px] space-y-4">
+        {/* Right Column: Generous Height to Comfortably Fit All 34 Units Without Any Clipping */}
+        <div className="lg:col-span-5 flex flex-col justify-between min-h-[820px] lg:h-[870px] space-y-4">
           
           {/* =========================================================
               BOX 1: Card Chi Tiết Đơn Vị Được Chọn
-              Height is locked to exactly h-[290px] so hovering NEVER shifts layout!
+              Generous height so no text is ever clipped, diacritics are 100% visible, and bottom status has breathing room!
              ========================================================= */}
-          <div className="bg-white rounded-3xl p-5 border border-neutral-200/90 shadow-xl relative overflow-hidden h-[290px] shrink-0 flex flex-col justify-between">
+          <div className="bg-white rounded-3xl p-5 sm:p-6 border border-neutral-200/90 shadow-xl relative min-h-[365px] shrink-0 flex flex-col justify-between">
             <div className="absolute top-0 right-0 w-24 h-24 bg-[#810100]/5 rounded-bl-full pointer-events-none" />
 
             <div>
               {/* Badge & ID */}
-              <div className="flex items-center justify-between mb-1.5">
-                <span className={`px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider ${
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <span className={`px-2.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider leading-normal inline-flex items-center ${
                   currentUnit.isMerged 
                     ? 'bg-amber-100 text-amber-900 border border-amber-300' 
                     : 'bg-[#810100]/10 text-[#810100]'
                 }`}>
                   {currentUnit.type}
                 </span>
-                <span className="text-[11px] text-neutral-400 font-semibold">Mã số: #{currentUnit.id < 10 ? `0${currentUnit.id}` : currentUnit.id}</span>
+                <span className="text-[11px] text-neutral-400 font-semibold shrink-0">
+                  Mã số: #{currentUnit.id < 10 ? `0${currentUnit.id}` : currentUnit.id}
+                </span>
               </div>
 
-              {/* Title: 1 line short title + 1 line subtitle (NEVER WRAPS OR GROWS) */}
-              <div className="mb-2">
-                <h5 className="font-anton text-2xl text-[#810100] uppercase leading-none truncate" title={currentUnit.name}>
+              {/* Title: Generous vertical padding and line-height so diacritics (HÀ NỘI) are NEVER cut off! */}
+              <div className="mb-3 pt-0.5">
+                <h5 
+                  className="font-anton text-2xl sm:text-[27px] text-[#810100] uppercase tracking-wide leading-snug pt-1 pb-0.5 block"
+                  title={currentUnit.name}
+                >
                   {currentUnit.shortName || currentUnit.name}
                 </h5>
-                <p className="text-[11px] text-neutral-500 font-medium truncate mt-1">
+                <p className="text-[11.5px] text-neutral-500 font-medium leading-normal mt-0.5">
                   {currentUnit.isMerged 
                     ? `Sáp nhập: ${currentUnit.oldNames.join(' + ')}` 
                     : 'Đơn vị hành chính cấp tỉnh giữ nguyên'}
@@ -410,15 +415,15 @@ export default function VietnamMap() {
               </div>
 
               {/* Area and Population Metrics (Constant single row) */}
-              <div className="grid grid-cols-2 gap-2.5 mb-2 text-xs">
-                <div className="p-2 rounded-xl bg-[#FAF9F5] border border-neutral-200/80">
+              <div className="grid grid-cols-2 gap-2.5 mb-2.5 text-xs">
+                <div className="p-2.5 rounded-xl bg-[#FAF9F5] border border-neutral-200/80">
                   <span className="text-neutral-500 flex items-center gap-1 mb-0.5 text-[10.5px]">
                     <Maximize2 className="w-3 h-3 text-[#810100]" /> Diện tích
                   </span>
                   <span className="font-anton text-sm sm:text-base text-[#1B1717]">{currentUnit.area} km²</span>
                 </div>
 
-                <div className="p-2 rounded-xl bg-[#FAF9F5] border border-neutral-200/80">
+                <div className="p-2.5 rounded-xl bg-[#FAF9F5] border border-neutral-200/80">
                   <span className="text-neutral-500 flex items-center gap-1 mb-0.5 text-[10.5px]">
                     <Users className="w-3 h-3 text-[#810100]" /> Dân số
                   </span>
@@ -427,21 +432,23 @@ export default function VietnamMap() {
               </div>
             </div>
 
-            {/* Bottom info section with fixed row heights and truncation */}
-            <div className="p-2.5 rounded-xl bg-[#FAF9F5] border border-neutral-200/80 space-y-1 text-[11px]">
-              <div className="flex items-center justify-between">
+            {/* Bottom info section: Extended box with generous spacing, border, and clear margin from edge */}
+            <div className="p-3 sm:p-3.5 rounded-2xl bg-[#FAF9F5] border border-neutral-200/80 space-y-2 text-[12px] mt-2 mb-0.5">
+              <div className="flex items-center justify-between gap-2">
                 <span className="text-neutral-500 shrink-0">Mô hình:</span>
-                <span className="font-bold text-neutral-800">Chính quyền địa phương 2 cấp</span>
+                <span className="font-bold text-neutral-800 text-right leading-tight">Chính quyền địa phương 2 cấp</span>
               </div>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-2">
                 <span className="text-neutral-500 shrink-0">Cấu thành:</span>
-                <span className="font-semibold text-[#810100] truncate max-w-[190px]" title={currentUnit.oldNames.join(', ')}>
+                <span className="font-semibold text-[#810100] truncate max-w-[210px]" title={currentUnit.oldNames.join(', ')}>
                   {currentUnit.oldNames.join(', ')}
                 </span>
               </div>
-              <div className="flex items-center justify-between">
-                <span className="text-neutral-500 shrink-0">Trạng thái:</span>
-                <span className={`font-bold ${currentUnit.isMerged ? 'text-amber-700' : 'text-green-700'}`}>
+              <div className="flex items-center justify-between gap-2 pt-1.5 border-t border-neutral-200/60">
+                <span className="text-neutral-500 shrink-0 font-medium">Trạng thái:</span>
+                <span className={`font-bold px-2 py-0.5 rounded-md text-[11px] uppercase tracking-wide ${
+                  currentUnit.isMerged ? 'bg-amber-100 text-amber-800 border border-amber-200' : 'bg-green-100 text-green-800 border border-green-200'
+                }`}>
                   {currentUnit.isMerged ? 'Sau sắp xếp' : 'Giữ nguyên'}
                 </span>
               </div>
@@ -450,17 +457,17 @@ export default function VietnamMap() {
 
           {/* =========================================================
               BOX 2: Bảng Tra Cứu Đầy Đủ 34 Đơn Vị Hành Chính
-              Height is locked to exactly h-[480px] lg:h-[510px] with overscroll-contain
+              Height is locked to flex-1 with overscroll-contain
              ========================================================= */}
           <div className="bg-[#FAF9F5] rounded-3xl p-5 border border-neutral-200 shadow-md flex-1 flex flex-col justify-between overflow-hidden">
             <div>
               {/* Header with 34/34 Badge */}
-              <div className="flex items-center justify-between mb-2">
-                <p className="font-anton text-sm text-[#1B1717] uppercase tracking-wide flex items-center gap-1.5">
-                  <Building className="w-4 h-4 text-[#810100]" />
-                  Danh mục 34 Đơn vị VGP
+              <div className="flex items-center justify-between gap-3 mb-2.5">
+                <p className="font-anton text-xs sm:text-[13px] text-[#1B1717] uppercase tracking-wide flex items-center gap-1.5 whitespace-nowrap shrink min-w-0">
+                  <Building className="w-3.5 h-3.5 text-[#810100] shrink-0" />
+                  <span>Danh mục 34 Đơn vị VGP</span>
                 </p>
-                <span className="px-2.5 py-0.5 rounded-full bg-[#810100] text-white text-[11px] font-bold">
+                <span className="px-2.5 py-0.5 rounded-full bg-[#810100] text-white text-[11px] font-bold whitespace-nowrap shrink-0 ml-auto">
                   {filteredUnits.length} / 34
                 </span>
               </div>

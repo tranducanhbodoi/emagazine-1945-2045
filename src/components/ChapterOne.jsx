@@ -114,9 +114,9 @@ export default function ChapterOne() {
           </p>
         </div>
 
-        {/* Interactive Timeline Box */}
+        {/* Interactive Horizontal Arrow Timeline */}
         <div className="mb-24 sm:mb-32 max-w-6xl mx-auto bg-[#EDEBDD]/60 rounded-3xl p-6 sm:p-10 border border-[#810100]/15 shadow-sm">
-          <div className="text-center mb-10">
+          <div className="text-center mb-8">
             <h4 className="font-anton text-2xl sm:text-3xl text-[#810100] uppercase tracking-wide">
               Những cột mốc lịch sử chói lọi của dân tộc
             </h4>
@@ -125,53 +125,89 @@ export default function ChapterOne() {
             </p>
           </div>
 
-          {/* Timeline Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {TIMELINE_DATA.map((item, idx) => {
-              const isSelected = activeTimelineIdx === idx;
-              return (
-                <motion.div
-                  key={item.date}
-                  whileHover={{ y: -6, scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => {
-                    setActiveTimelineIdx(idx);
-                    setSelectedMilestone(item);
-                  }}
-                  className={`cursor-pointer rounded-2xl p-6 transition-all duration-300 relative overflow-hidden border ${
-                    isSelected
-                      ? 'bg-white shadow-xl border-[#810100] ring-2 ring-[#810100]/20'
-                      : 'bg-white/80 hover:bg-white shadow-md hover:shadow-xl border-neutral-200/90'
-                  }`}
-                >
-                  {/* Decorative tag */}
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#810100]/10 text-[#810100] font-anton text-sm">
-                      <Calendar className="w-3.5 h-3.5" />
-                      {item.date}
-                    </span>
-                    <span className="text-xs font-semibold text-neutral-400">#0{idx + 1}</span>
+          {/* Horizontal Arrow Timeline Track */}
+          <div className="overflow-x-auto pb-4 scrollbar-thin">
+            <div className="min-w-[760px] lg:min-w-0">
+              
+              {/* Top Boxes: Date, Bold Title, Centered Action */}
+              <div className="grid grid-cols-5 gap-3 sm:gap-4 mb-3">
+                {TIMELINE_DATA.map((item, idx) => {
+                  const isSelected = activeTimelineIdx === idx;
+                  return (
+                    <motion.div
+                      key={item.date}
+                      whileHover={{ y: -4, scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => {
+                        setActiveTimelineIdx(idx);
+                        setSelectedMilestone(item);
+                      }}
+                      className={`cursor-pointer rounded-2xl p-4 sm:p-5 transition-all duration-300 relative text-center flex flex-col items-center justify-between min-h-[145px] sm:min-h-[160px] border shadow-sm ${
+                        isSelected
+                          ? 'bg-white border-[#810100] shadow-xl ring-2 ring-[#810100]/25'
+                          : 'bg-white/85 hover:bg-white border-neutral-200/90 hover:shadow-md hover:border-[#810100]/40'
+                      }`}
+                    >
+                      {/* Ngày */}
+                      <span className={`inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold mb-1.5 ${
+                        isSelected ? 'bg-[#810100] text-white' : 'bg-[#810100]/10 text-[#810100]'
+                      }`}>
+                        {item.date}
+                      </span>
+
+                      {/* Chữ in đậm */}
+                      <h5 className="font-bold text-sm sm:text-base text-[#1B1717] leading-snug my-auto px-1">
+                        {item.title}
+                      </h5>
+
+                      {/* Nhấp vào ... căn giữa */}
+                      <span className={`text-[11px] sm:text-xs text-center transition-colors mt-auto ${
+                        isSelected ? 'text-[#810100] font-semibold' : 'text-neutral-400 group-hover:text-neutral-600 italic'
+                      }`}>
+                        (Nhấp vào để xem chi tiết)
+                      </span>
+                    </motion.div>
+                  );
+                })}
+              </div>
+
+              {/* Horizontal Arrow Line under the boxes */}
+              <div className="relative flex items-center px-4 my-2">
+                {/* Arrow Track */}
+                <div className="relative w-full h-3 bg-gradient-to-r from-[#810100]/30 via-[#810100]/75 to-[#810100] rounded-l-full shadow-inner">
+                  {/* Nodes along the arrow */}
+                  <div className="absolute inset-0 flex items-center justify-around">
+                    {TIMELINE_DATA.map((item, idx) => {
+                      const isSelected = activeTimelineIdx === idx;
+                      return (
+                        <button
+                          key={idx}
+                          onClick={() => {
+                            setActiveTimelineIdx(idx);
+                            setSelectedMilestone(item);
+                          }}
+                          className={`w-6 h-6 rounded-full border-2 transition-all flex items-center justify-center cursor-pointer ${
+                            isSelected
+                              ? 'bg-[#810100] border-white ring-4 ring-[#810100]/30 scale-125'
+                              : 'bg-white border-[#810100] hover:scale-110'
+                          }`}
+                          title={item.title}
+                        >
+                          <span className={`w-2 h-2 rounded-full ${isSelected ? 'bg-[#FFD700]' : 'bg-[#810100]'}`} />
+                        </button>
+                      );
+                    })}
                   </div>
+                </div>
+                {/* Arrowhead pointing right */}
+                <div className="w-0 h-0 border-y-[10px] border-y-transparent border-l-[16px] border-l-[#810100] shrink-0 drop-shadow-sm -ml-0.5" />
+              </div>
 
-                  <h5 className="font-anton text-lg sm:text-xl text-[#1B1717] group-hover:text-[#810100] transition-colors mb-2 leading-snug">
-                    {item.title}
-                  </h5>
-
-                  <p className="text-xs sm:text-sm text-neutral-600 line-clamp-3 leading-relaxed">
-                    {item.summary}
-                  </p>
-
-                  <div className="mt-4 pt-3 border-t border-neutral-100 flex items-center justify-between text-[#810100] text-xs font-semibold">
-                    <span>Xem nội dung</span>
-                    <ChevronRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
-                  </div>
-                </motion.div>
-              );
-            })}
+            </div>
           </div>
 
           {/* Active Detail Bar */}
-          <div className="mt-8 p-6 bg-white rounded-2xl border-l-4 border-[#810100] shadow-sm">
+          <div className="mt-6 p-6 sm:p-7 bg-white rounded-2xl border-l-4 border-[#810100] shadow-sm">
             <div className="flex items-start gap-4">
               <div className="p-2.5 rounded-xl bg-[#810100]/10 text-[#810100] flex-shrink-0">
                 <Info className="w-5 h-5" />
@@ -180,7 +216,7 @@ export default function ChapterOne() {
                 <h6 className="font-anton text-lg text-[#810100] uppercase mb-1">
                   {TIMELINE_DATA[activeTimelineIdx].date} — {TIMELINE_DATA[activeTimelineIdx].title}
                 </h6>
-                <p className="text-sm text-neutral-700 leading-relaxed">
+                <p className="text-sm sm:text-base text-neutral-700 leading-relaxed text-justify">
                   {TIMELINE_DATA[activeTimelineIdx].detail}
                 </p>
               </div>
@@ -390,19 +426,17 @@ export default function ChapterOne() {
 
             </div>
 
-            {/* Right Column: Sticky Pinned Image with Edge Dissolve */}
+            {/* Right Column: Sticky Pinned Image in Rounded Frame */}
             <div className="lg:col-span-5 lg:sticky lg:top-24">
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-neutral-300 bg-[#EDEBDD]">
                 <img
                   src="/image/bac-ho.jpg"
                   alt="Bác Hồ đến thăm một lớp học ở khu lao động"
-                  className="w-full h-[450px] object-cover object-center mask-dissolve-left filter contrast-[1.05]"
+                  className="w-full h-[450px] object-cover object-center filter contrast-[1.05]"
                   onError={(e) => {
                     e.currentTarget.src = '/image/cover.jpg';
                   }}
                 />
-                {/* Fallback gradient overlay if mask is not supported */}
-                <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#FAF9F5] via-[#FAF9F5]/60 to-transparent pointer-events-none" />
 
                 <div className="p-4 bg-white/95 backdrop-blur-sm border-t border-neutral-200">
                   <p className="font-semibold text-xs text-neutral-800 uppercase tracking-wide">
@@ -429,22 +463,25 @@ export default function ChapterOne() {
           transition={{ duration: 0.9 }}
           className="mb-8 max-w-5xl mx-auto rounded-3xl overflow-hidden bg-[#EDEBDD] border-2 border-[#810100]/30 shadow-2xl"
         >
-          <div className="grid grid-cols-1 md:grid-cols-12 items-center">
-            {/* Left: Photo */}
-            <div className="md:col-span-5 relative h-72 md:h-96 bg-neutral-900 overflow-hidden">
+          <div className="grid grid-cols-1 md:grid-cols-12 items-stretch">
+            {/* Left: Photo - Full portrait height like original photo, seated position elevated naturally */}
+            <div className="md:col-span-5 relative min-h-[380px] sm:min-h-[440px] md:min-h-[480px] bg-[#EDEBDD] overflow-hidden">
               <img
                 src="/image/image.png"
                 alt="Chủ tịch Hồ Chí Minh"
-                className="w-full h-full object-cover object-top filter contrast-105"
+                className="w-full h-full object-cover object-top scale-[1.03] origin-top filter contrast-105"
                 onError={(e) => {
                   e.currentTarget.src = '/image/bac-ho.jpg';
                 }}
               />
-              <div className="absolute inset-0 bg-[#810100]/10 mix-blend-color pointer-events-none" />
+              <div className="absolute inset-0 bg-[#810100]/5 mix-blend-color pointer-events-none" />
+              {/* Blend right edge smoothly into card background */}
+              <div className="hidden md:block absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#EDEBDD] via-[#EDEBDD]/80 to-transparent pointer-events-none" />
+              <div className="md:hidden absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#EDEBDD] via-[#EDEBDD]/80 to-transparent pointer-events-none" />
             </div>
 
             {/* Right: Quote in vibrant red */}
-            <div className="md:col-span-7 p-8 sm:p-10 md:p-12">
+            <div className="md:col-span-7 p-8 sm:p-10 md:p-12 flex flex-col justify-center">
               <span className="inline-block px-3 py-1 rounded-full bg-[#810100] text-[#EDEBDD] text-xs font-anton tracking-widest uppercase mb-4">
                 Lời dặn của Bác
               </span>
