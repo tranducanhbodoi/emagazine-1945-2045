@@ -5,6 +5,7 @@ import {
   X,
   Quote,
   ChevronRight,
+  ChevronDown,
   Info
 } from 'lucide-react';
 
@@ -48,8 +49,7 @@ const TIMELINE_DATA = [
 ];
 
 export default function ChapterOne() {
-  const [selectedMilestone, setSelectedMilestone] = useState(null);
-  const [activeTimelineIdx, setActiveTimelineIdx] = useState(0);
+  const [expandedMilestoneIdx, setExpandedMilestoneIdx] = useState(null);
 
   return (
     <section id="chuong-1" className="bg-[#FAF9F5] text-neutral-800 py-16 sm:py-24">
@@ -114,9 +114,9 @@ export default function ChapterOne() {
           </p>
         </div>
 
-        {/* Interactive Horizontal Arrow Timeline */}
-        <div className="mb-24 sm:mb-32 max-w-6xl mx-auto bg-[#EDEBDD]/60 rounded-3xl p-6 sm:p-10 border border-[#810100]/15 shadow-sm">
-          <div className="text-center mb-8">
+        {/* Interactive Vertical Timeline */}
+        <div className="mb-24 sm:mb-32 max-w-4xl mx-auto bg-[#EDEBDD]/60 rounded-3xl p-6 sm:p-10 border border-[#810100]/15 shadow-sm">
+          <div className="text-center mb-10">
             <h4 className="font-anton text-2xl sm:text-3xl text-[#810100] uppercase tracking-wide">
               Những cột mốc lịch sử chói lọi của dân tộc
             </h4>
@@ -125,153 +125,106 @@ export default function ChapterOne() {
             </p>
           </div>
 
-          {/* Horizontal Arrow Timeline Track */}
-          <div className="overflow-x-auto pb-4 scrollbar-thin">
-            <div className="min-w-[760px] lg:min-w-0">
-              
-              {/* Top Boxes: Date, Bold Title, Centered Action */}
-              <div className="grid grid-cols-5 gap-3 sm:gap-4 mb-3">
-                {TIMELINE_DATA.map((item, idx) => {
-                  const isSelected = activeTimelineIdx === idx;
-                  return (
-                    <motion.div
-                      key={item.date}
-                      whileHover={{ y: -4, scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      onClick={() => {
-                        setActiveTimelineIdx(idx);
-                        setSelectedMilestone(item);
-                      }}
-                      className={`cursor-pointer rounded-2xl p-4 sm:p-5 transition-all duration-300 relative text-center flex flex-col items-center justify-between min-h-[145px] sm:min-h-[160px] border shadow-sm ${
-                        isSelected
-                          ? 'bg-white border-[#810100] shadow-xl ring-2 ring-[#810100]/25'
-                          : 'bg-white/85 hover:bg-white border-neutral-200/90 hover:shadow-md hover:border-[#810100]/40'
-                      }`}
-                    >
-                      {/* Ngày */}
-                      <span className={`inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold mb-1.5 ${
-                        isSelected ? 'bg-[#810100] text-white' : 'bg-[#810100]/10 text-[#810100]'
-                      }`}>
-                        {item.date}
-                      </span>
+          {/* Continuous Vertical Timeline Structure */}
+          <div className="relative">
+            {TIMELINE_DATA.map((item, idx) => {
+              const isExpanded = expandedMilestoneIdx === idx;
+              const isLast = idx === TIMELINE_DATA.length - 1;
 
-                      {/* Chữ in đậm */}
-                      <h5 className="font-bold text-sm sm:text-base text-[#1B1717] leading-snug my-auto px-1">
-                        {item.title}
-                      </h5>
+              return (
+                <div
+                  key={item.date}
+                  className={`relative flex items-start gap-4 sm:gap-6 ${isLast ? '' : 'pb-5 sm:pb-6'}`}
+                >
+                  {/* Seamless continuous vertical spine line connecting to next milestone */}
+                  {!isLast && (
+                    <span
+                      className="absolute left-[18px] sm:left-[22px] top-6 sm:top-7 -ml-[1.5px] h-full w-[3px] bg-gradient-to-b from-[#810100] via-[#810100]/60 to-[#810100]/40 rounded-full"
+                      aria-hidden="true"
+                    />
+                  )}
 
-                      {/* Nhấp vào ... căn giữa */}
-                      <span className={`text-[11px] sm:text-xs text-center transition-colors mt-auto ${
-                        isSelected ? 'text-[#810100] font-semibold' : 'text-neutral-400 group-hover:text-neutral-600 italic'
-                      }`}>
-                        (Nhấp vào để xem chi tiết)
-                      </span>
-                    </motion.div>
-                  );
-                })}
-              </div>
-
-              {/* Horizontal Arrow Line under the boxes */}
-              <div className="relative flex items-center px-4 my-2">
-                {/* Arrow Track */}
-                <div className="relative w-full h-3 bg-gradient-to-r from-[#810100]/30 via-[#810100]/75 to-[#810100] rounded-l-full shadow-inner">
-                  {/* Nodes along the arrow */}
-                  <div className="absolute inset-0 flex items-center justify-around">
-                    {TIMELINE_DATA.map((item, idx) => {
-                      const isSelected = activeTimelineIdx === idx;
-                      return (
-                        <button
-                          key={idx}
-                          onClick={() => {
-                            setActiveTimelineIdx(idx);
-                            setSelectedMilestone(item);
-                          }}
-                          className={`w-6 h-6 rounded-full border-2 transition-all flex items-center justify-center cursor-pointer ${
-                            isSelected
-                              ? 'bg-[#810100] border-white ring-4 ring-[#810100]/30 scale-125'
-                              : 'bg-white border-[#810100] hover:scale-110'
-                          }`}
-                          title={item.title}
-                        >
-                          <span className={`w-2 h-2 rounded-full ${isSelected ? 'bg-[#FFD700]' : 'bg-[#810100]'}`} />
-                        </button>
-                      );
-                    })}
+                  {/* Left Column: Circle Milestone Node */}
+                  <div
+                    onClick={() => setExpandedMilestoneIdx(isExpanded ? null : idx)}
+                    className={`relative z-10 w-9 h-9 sm:w-11 sm:h-11 rounded-full border-2 transition-all duration-300 flex items-center justify-center cursor-pointer shrink-0 mt-3 sm:mt-3.5 ${
+                      isExpanded
+                        ? 'bg-[#810100] border-white ring-4 ring-[#810100]/25 shadow-lg scale-110'
+                        : 'bg-[#FAF9F5] border-[#810100] hover:scale-105 shadow-sm'
+                    }`}
+                    title={item.title}
+                  >
+                    <span className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-colors ${isExpanded ? 'bg-[#FFD700]' : 'bg-[#810100]'}`} />
                   </div>
+
+                  {/* Right Column: Milestone Card (Ngày tháng năm + Tên sự kiện + Info cụ thể khi ấn) */}
+                  <motion.div
+                    whileHover={{ x: 3 }}
+                    onClick={() => setExpandedMilestoneIdx(isExpanded ? null : idx)}
+                    className={`flex-1 min-w-0 cursor-pointer rounded-2xl sm:rounded-3xl p-4 sm:p-6 transition-all duration-300 border ${
+                      isExpanded
+                        ? 'bg-white border-[#810100] shadow-xl ring-2 ring-[#810100]/20'
+                        : 'bg-white/85 hover:bg-white border-neutral-200/90 shadow-sm hover:shadow-md hover:border-[#810100]/40'
+                    }`}
+                  >
+                    {/* Header Row: Ngày tháng năm + Tên sự kiện + Indicator */}
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                      <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+                        {/* Ngày tháng năm */}
+                        <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs sm:text-sm font-anton tracking-wide ${
+                          isExpanded ? 'bg-[#810100] text-white shadow-sm' : 'bg-[#810100]/10 text-[#810100]'
+                        }`}>
+                          <Calendar className="w-3.5 h-3.5" />
+                          {item.date}
+                        </span>
+
+                        {/* Tên sự kiện in đậm */}
+                        <h5 className="font-anton text-lg sm:text-xl text-[#1B1717] group-hover:text-[#810100] transition-colors leading-tight">
+                          {item.title}
+                        </h5>
+                      </div>
+
+                      {/* Right Indicator: Click hint + Chevron */}
+                      <div className="flex items-center gap-1.5 text-xs text-neutral-500 shrink-0 self-end sm:self-auto">
+                        <span className={`hidden sm:inline italic text-[11px] ${isExpanded ? 'text-[#810100] font-semibold' : ''}`}>
+                          {isExpanded ? 'Đang xem' : 'Ấn xem chi tiết'}
+                        </span>
+                        <ChevronDown className={`w-4 h-4 text-[#810100] transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} />
+                      </div>
+                    </div>
+
+                    {/* Info cụ thể khi ấn vào */}
+                    <AnimatePresence>
+                      {isExpanded && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.35, ease: 'easeInOut' }}
+                          className="overflow-hidden"
+                        >
+                          <div className="pt-4 mt-4 border-t border-neutral-100">
+                            {/* Summary callout */}
+                            <div className="p-3.5 sm:p-4 rounded-xl bg-[#FAF9F5] border-l-4 border-[#810100] mb-3">
+                              <p className="text-xs sm:text-sm text-neutral-800 font-semibold leading-relaxed">
+                                {item.summary}
+                              </p>
+                            </div>
+
+                            {/* Detailed Historical Narrative */}
+                            <p className="text-sm sm:text-base text-neutral-700 leading-relaxed text-justify">
+                              {item.detail}
+                            </p>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
                 </div>
-                {/* Arrowhead pointing right */}
-                <div className="w-0 h-0 border-y-[10px] border-y-transparent border-l-[16px] border-l-[#810100] shrink-0 drop-shadow-sm -ml-0.5" />
-              </div>
-
-            </div>
-          </div>
-
-          {/* Active Detail Bar */}
-          <div className="mt-6 p-6 sm:p-7 bg-white rounded-2xl border-l-4 border-[#810100] shadow-sm">
-            <div className="flex items-start gap-4">
-              <div className="p-2.5 rounded-xl bg-[#810100]/10 text-[#810100] flex-shrink-0">
-                <Info className="w-5 h-5" />
-              </div>
-              <div>
-                <h6 className="font-anton text-lg text-[#810100] uppercase mb-1">
-                  {TIMELINE_DATA[activeTimelineIdx].date} — {TIMELINE_DATA[activeTimelineIdx].title}
-                </h6>
-                <p className="text-sm sm:text-base text-neutral-700 leading-relaxed text-justify">
-                  {TIMELINE_DATA[activeTimelineIdx].detail}
-                </p>
-              </div>
-            </div>
+              );
+            })}
           </div>
         </div>
-
-        {/* Modal Detail for Timeline Click */}
-        <AnimatePresence>
-          {selectedMilestone && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
-              onClick={() => setSelectedMilestone(null)}
-            >
-              <motion.div
-                initial={{ scale: 0.92, opacity: 0, y: 20 }}
-                animate={{ scale: 1, opacity: 1, y: 0 }}
-                exit={{ scale: 0.95, opacity: 0, y: 15 }}
-                onClick={(e) => e.stopPropagation()}
-                className="bg-[#FAF9F5] border border-[#810100]/30 rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl relative"
-              >
-                <button
-                  onClick={() => setSelectedMilestone(null)}
-                  className="absolute top-5 right-5 p-2 rounded-full hover:bg-neutral-200 text-neutral-600 transition-colors"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-
-                <div className="inline-block px-3 py-1 rounded-full bg-[#810100] text-[#EDEBDD] font-anton text-sm mb-3">
-                  {selectedMilestone.date}
-                </div>
-
-                <h4 className="font-anton text-2xl text-[#1B1717] mb-3 leading-tight">
-                  {selectedMilestone.title}
-                </h4>
-
-                <div className="w-12 h-1 bg-[#810100] mb-4" />
-
-                <p className="text-sm sm:text-base text-neutral-700 leading-relaxed mb-6">
-                  {selectedMilestone.detail}
-                </p>
-
-                <button
-                  onClick={() => setSelectedMilestone(null)}
-                  className="w-full py-3 rounded-xl bg-[#810100] hover:bg-[#630000] text-[#EDEBDD] font-semibold text-sm transition-colors shadow-md"
-                >
-                  Đóng lại
-                </button>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
 
         {/* =================================================================
             3.5. ĐOẠN DẪN NHẬP & BÌNH LUẬN LỊCH SỬ

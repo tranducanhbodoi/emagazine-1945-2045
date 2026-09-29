@@ -25,6 +25,7 @@ import VietnamMap from './VietnamMap';
 import InfrastructureSlider from './InfrastructureSlider';
 import PeopleLifeSlider from './PeopleLifeSlider';
 import TradeDiplomacySlider from './TradeDiplomacySlider';
+import WorldBankGDPChart from './WorldBankGDPChart';
 
 // 4 Main Economic Infographic Stats
 const ECONOMIC_STATS = [
@@ -390,80 +391,116 @@ export default function ChapterTwo() {
             </p>
           </div>
 
-          {/* Bento Grid: Tech Metrics & Economic Scale */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch mb-8">
+          {/* Box 1: Resolution 57 Highlight - Làm chủ AI & Bán dẫn (Full-width row) */}
+          <motion.div
+            whileHover={{ y: -3 }}
+            className="w-full bg-[#1B1717] text-[#EDEBDD] rounded-3xl p-8 sm:p-10 md:p-12 shadow-xl relative overflow-hidden mb-8 border border-white/10"
+          >
+            <div className="absolute top-0 right-0 w-96 h-96 bg-red-600/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
             
-            {/* Box 1: Resolution 57 Highlight */}
-            <motion.div
-              whileHover={{ y: -4 }}
-              className="md:col-span-7 bg-[#1B1717] text-[#EDEBDD] rounded-3xl p-8 sm:p-10 shadow-xl flex flex-col justify-between relative overflow-hidden"
-            >
-              <div className="absolute top-0 right-0 w-64 h-64 bg-red-600/10 rounded-full blur-3xl pointer-events-none" />
-              
-              <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-white text-xs font-semibold uppercase tracking-wider mb-6">
-                  <Cpu className="w-3.5 h-3.5 text-red-400" />
-                  Nghị quyết 57-NQ/TW của Bộ Chính trị
-                </div>
-
-                <h5 className="font-anton text-2xl sm:text-3xl text-white uppercase mb-4 leading-snug">
-                  <span className="inline-block">Làm chủ AI, Công nghệ Bán dẫn</span>{' '}
-                  <span className="inline-block">và Kinh tế Tri thức</span>
-                </h5>
-
-                <p className="text-sm sm:text-base text-neutral-300 leading-relaxed font-normal mb-6">
-                  Tập trung mũi nhọn vào trí tuệ nhân tạo, công nghệ bán dẫn, dữ liệu lớn và công nghệ sinh học. Đẩy mạnh liên kết giữa các viện trường, doanh nghiệp nội địa với dòng vốn đầu tư quốc tế chất lượng cao.
-                </p>
+            <div className="relative z-10">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-white text-xs font-semibold uppercase tracking-wider mb-5">
+                <Cpu className="w-3.5 h-3.5 text-red-400" />
+                Nghị quyết 57-NQ/TW của Bộ Chính trị
               </div>
 
-              <div className="pt-6 border-t border-white/10 flex items-center justify-between">
-                <div>
-                  <span className="text-xs text-neutral-400 block">Chỉ số Đổi mới sáng tạo (GII) 2025</span>
-                  <span className="font-anton text-2xl text-red-400">Vị trí 44 / 139</span>
-                </div>
-                <div className="text-right">
-                  <span className="text-xs text-neutral-400 block">Động lực trung tâm</span>
-                  <span className="font-anton text-xl text-amber-300">Công nghệ & Đổi mới</span>
-                </div>
-              </div>
-            </motion.div>
+              <h5 className="font-anton text-2xl sm:text-3xl md:text-4xl text-white uppercase mb-4 leading-snug">
+                Làm chủ AI, Công nghệ Bán dẫn và Kinh tế Tri thức
+              </h5>
 
-            {/* Box 2: Quy mô nền kinh tế & Hội nhập ngoại giao */}
-            <motion.div
-              whileHover={{ y: -4 }}
-              className="md:col-span-5 bg-[#EDEBDD] rounded-3xl p-8 sm:p-10 border-2 border-[#810100]/25 shadow-xl flex flex-col justify-between"
-            >
-              <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#810100] text-[#EDEBDD] text-xs font-anton tracking-wider uppercase mb-4">
-                  <Globe2 className="w-3.5 h-3.5" />
-                  Quy mô & Vị thế Ngoại giao
+              <p className="text-sm sm:text-base md:text-lg text-neutral-300 leading-relaxed font-normal mb-8 max-w-4xl">
+                Tập trung mũi nhọn vào trí tuệ nhân tạo, công nghệ bán dẫn, dữ liệu lớn và công nghệ sinh học. Đẩy mạnh liên kết giữa các viện trường, doanh nghiệp nội địa với dòng vốn đầu tư quốc tế chất lượng cao, hình thành hệ sinh thái đổi mới sáng tạo quốc gia có năng lực cạnh tranh toàn cầu.
+              </p>
+
+              {/* 3 Metric Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-white/10">
+                <div className="p-4 sm:p-5 rounded-2xl bg-white/5 border border-white/10">
+                  <span className="text-xs text-neutral-400 block mb-1">Chỉ số Đổi mới sáng tạo (GII) 2025</span>
+                  <span className="font-anton text-2xl sm:text-3xl text-red-400 block">Vị trí 44 / 139</span>
+                  <span className="text-[11px] text-neutral-400 mt-1 block">Tăng vọt trên bảng xếp hạng toàn cầu</span>
                 </div>
 
-                <h5 className="font-anton text-2xl text-[#810100] uppercase mb-4 leading-snug">
-                  Tăng Trưởng 96 Lần So Với Năm 1986
-                </h5>
-
-                <p className="text-xs sm:text-sm text-neutral-700 leading-relaxed mb-3">
-                  So với thời điểm bắt đầu Đổi mới năm 1986, quy mô nền kinh tế đến năm 2023 đã tăng trưởng tới <strong>96 lần</strong>. Việt Nam chính thức đứng trong tốp 40 nền kinh tế lớn nhất thế giới và top 20 quốc gia hàng đầu về quy mô thương mại và thu hút đầu tư quốc tế.
-                </p>
-
-                <p className="text-xs sm:text-sm text-neutral-700 leading-relaxed mb-6">
-                  Về vị thế ngoại giao, Việt Nam đã thiết lập quan hệ chính thức với <strong>193 quốc gia thành viên Liên hợp quốc</strong>, tham gia <strong>hơn 70 tổ chức và diễn đàn quốc tế</strong>, đồng thời đóng góp ngày càng chủ động vào các thể chế đa phương.
-                </p>
-              </div>
-
-              <div className="space-y-2.5 pt-4 border-t border-[#810100]/20">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-semibold text-neutral-700">Quan hệ chính thức</span>
-                  <span className="font-anton text-base text-[#810100]">193 quốc gia LHQ</span>
+                <div className="p-4 sm:p-5 rounded-2xl bg-white/5 border border-white/10">
+                  <span className="text-xs text-neutral-400 block mb-1">Động lực trung tâm</span>
+                  <span className="font-anton text-xl sm:text-2xl text-amber-300 block">Khoa học & Đổi mới</span>
+                  <span className="text-[11px] text-neutral-400 mt-1 block">Chuyển dịch sang kinh tế tri thức</span>
                 </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-semibold text-neutral-700">Tổ chức & diễn đàn quốc tế</span>
-                  <span className="font-anton text-base text-[#810100]">Hơn 70 tổ chức</span>
+
+                <div className="p-4 sm:p-5 rounded-2xl bg-white/5 border border-white/10">
+                  <span className="text-xs text-neutral-400 block mb-1">Đột phá chiến lược</span>
+                  <span className="font-anton text-xl sm:text-2xl text-emerald-400 block">Bán dẫn, AI & Dữ liệu</span>
+                  <span className="text-[11px] text-neutral-400 mt-1 block">Khâu đột phá Nghị quyết 57-NQ/TW</span>
                 </div>
               </div>
-            </motion.div>
+            </div>
+          </motion.div>
 
+          {/* Box 2: Vị thế Ngoại giao & Tăng trưởng 96 lần (Full-width row: Ngoại giao ở trên, Kinh tế ở dưới ngay trên chart) */}
+          <motion.div
+            whileHover={{ y: -3 }}
+            className="w-full bg-[#EDEBDD] rounded-3xl p-8 sm:p-10 md:p-12 border-2 border-[#810100]/25 shadow-xl mb-8 relative overflow-hidden"
+          >
+            {/* PHẦN 1: NGOẠI GIAO (Đưa lên trên) */}
+            <div className="pb-8 border-b border-[#810100]/20">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#810100] text-[#EDEBDD] text-xs font-anton tracking-wider uppercase mb-4">
+                <Globe2 className="w-3.5 h-3.5" />
+                Vị thế Ngoại giao & Hội nhập Toàn cầu
+              </div>
+
+              <h5 className="font-anton text-2xl sm:text-3xl text-[#1B1717] uppercase mb-4 leading-snug">
+                Mở Rộng Hợp Tác Đa Phương & Nâng Tầm Uy Tín Quốc Tế
+              </h5>
+
+              <p className="text-sm sm:text-base text-neutral-700 leading-relaxed mb-6 font-normal">
+                Về vị thế ngoại giao, Việt Nam đã thiết lập quan hệ chính thức với <strong>193 quốc gia thành viên Liên hợp quốc</strong>, tham gia <strong>hơn 70 tổ chức và diễn đàn quốc tế</strong>, đồng thời đóng góp ngày càng chủ động và có trách nhiệm vào các thể chế đa phương khu vực và toàn cầu.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="p-4 sm:p-5 rounded-2xl bg-white/70 border border-[#810100]/15 flex items-center justify-between shadow-sm">
+                  <div>
+                    <span className="text-xs font-semibold text-neutral-600 block mb-0.5">Quan hệ ngoại giao chính thức</span>
+                    <span className="font-anton text-xl sm:text-2xl text-[#810100]">193 quốc gia LHQ</span>
+                  </div>
+                  <Globe2 className="w-8 h-8 text-[#810100]/30 shrink-0 ml-3" />
+                </div>
+
+                <div className="p-4 sm:p-5 rounded-2xl bg-white/70 border border-[#810100]/15 flex items-center justify-between shadow-sm">
+                  <div>
+                    <span className="text-xs font-semibold text-neutral-600 block mb-0.5">Tổ chức & diễn đàn quốc tế</span>
+                    <span className="font-anton text-xl sm:text-2xl text-[#810100]">Hơn 70 tổ chức</span>
+                  </div>
+                  <TrendingUp className="w-8 h-8 text-[#810100]/30 shrink-0 ml-3" />
+                </div>
+              </div>
+            </div>
+
+            {/* PHẦN 2: KINH TẾ (Đưa xuống dưới, nằm ngay phía trên World Bank Chart) */}
+            <div className="pt-8">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#810100]/10 text-[#810100] border border-[#810100]/25 text-xs font-anton tracking-wider uppercase mb-4">
+                <TrendingUp className="w-3.5 h-3.5" />
+                Quy mô nền kinh tế qua 4 thập kỷ
+              </div>
+
+              <h5 className="font-anton text-2xl sm:text-3xl md:text-4xl text-[#810100] uppercase mb-4 leading-snug">
+                Tăng Trưởng 96 Lần So Với Năm 1986
+              </h5>
+
+              <p className="text-sm sm:text-base md:text-lg text-neutral-800 leading-relaxed font-normal mb-4">
+                So với thời điểm bắt đầu Đổi mới năm 1986, quy mô nền kinh tế đến năm 2023 đã tăng trưởng tới <strong>96 lần</strong>. Việt Nam chính thức đứng trong tốp 40 nền kinh tế lớn nhất thế giới và top 20 quốc gia hàng đầu về quy mô thương mại và thu hút đầu tư quốc tế.
+              </p>
+
+              <p className="text-xs sm:text-sm text-neutral-600 italic">
+                Dữ liệu định lượng lịch sử chi tiết từ Ngân hàng Thế giới (World Bank) từ năm 1986 đến nay được thể hiện trực quan ngay trong biểu đồ dưới đây:
+              </p>
+            </div>
+          </motion.div>
+
+          {/* =================================================================
+              WORLD BANK GDP GROWTH CHART (1986 - NAY: MINH CHỨNG TĂNG TRƯỞNG 96 LẦN)
+             ================================================================= */}
+          <div className="mb-14">
+            <WorldBankGDPChart />
           </div>
         </div>
 

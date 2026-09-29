@@ -375,13 +375,13 @@ export default function VietnamMap() {
         </div>
 
         {/* Right Column: Generous Height to Comfortably Fit All 34 Units Without Any Clipping */}
-        <div className="lg:col-span-5 flex flex-col justify-between min-h-[820px] lg:h-[870px] space-y-4">
+        <div className="lg:col-span-5 flex flex-col justify-between h-[820px] lg:h-[870px] space-y-4">
           
           {/* =========================================================
               BOX 1: Card Chi Tiết Đơn Vị Được Chọn
-              Generous height so no text is ever clipped, diacritics are 100% visible, and bottom status has breathing room!
+              Strict locked height and truncated subtitle so hover NEVER changes height or causes jitter!
              ========================================================= */}
-          <div className="bg-white rounded-3xl p-5 sm:p-6 border border-neutral-200/90 shadow-xl relative min-h-[365px] shrink-0 flex flex-col justify-between">
+          <div className="bg-white rounded-3xl p-5 sm:p-6 border border-neutral-200/90 shadow-xl relative h-[365px] max-h-[365px] shrink-0 flex flex-col justify-between overflow-hidden">
             <div className="absolute top-0 right-0 w-24 h-24 bg-[#810100]/5 rounded-bl-full pointer-events-none" />
 
             <div>
@@ -399,15 +399,18 @@ export default function VietnamMap() {
                 </span>
               </div>
 
-              {/* Title: Generous vertical padding and line-height so diacritics (HÀ NỘI) are NEVER cut off! */}
+              {/* Title: Fixed height and line-clamped so it NEVER expands Box 1 on hover */}
               <div className="mb-3 pt-0.5">
                 <h5 
-                  className="font-anton text-2xl sm:text-[27px] text-[#810100] uppercase tracking-wide leading-snug pt-1 pb-0.5 block"
+                  className="font-anton text-2xl sm:text-[27px] text-[#810100] uppercase tracking-wide leading-snug pt-1 pb-0.5 block truncate"
                   title={currentUnit.name}
                 >
                   {currentUnit.shortName || currentUnit.name}
                 </h5>
-                <p className="text-[11.5px] text-neutral-500 font-medium leading-normal mt-0.5">
+                <p 
+                  className="text-[11.5px] text-neutral-500 font-medium leading-normal mt-0.5 truncate h-4" 
+                  title={currentUnit.isMerged ? `Sáp nhập: ${currentUnit.oldNames.join(' + ')}` : 'Đơn vị hành chính cấp tỉnh giữ nguyên'}
+                >
                   {currentUnit.isMerged 
                     ? `Sáp nhập: ${currentUnit.oldNames.join(' + ')}` 
                     : 'Đơn vị hành chính cấp tỉnh giữ nguyên'}
@@ -440,7 +443,7 @@ export default function VietnamMap() {
               </div>
               <div className="flex items-center justify-between gap-2">
                 <span className="text-neutral-500 shrink-0">Cấu thành:</span>
-                <span className="font-semibold text-[#810100] truncate max-w-[210px]" title={currentUnit.oldNames.join(', ')}>
+                <span className="font-semibold text-[#810100] truncate max-w-[200px]" title={currentUnit.oldNames.join(', ')}>
                   {currentUnit.oldNames.join(', ')}
                 </span>
               </div>
@@ -457,9 +460,9 @@ export default function VietnamMap() {
 
           {/* =========================================================
               BOX 2: Bảng Tra Cứu Đầy Đủ 34 Đơn Vị Hành Chính
-              Height is locked to flex-1 with overscroll-contain
+              Height is locked to flex-1 min-h-0 with overscroll-contain
              ========================================================= */}
-          <div className="bg-[#FAF9F5] rounded-3xl p-5 border border-neutral-200 shadow-md flex-1 flex flex-col justify-between overflow-hidden">
+          <div className="bg-[#FAF9F5] rounded-3xl p-5 border border-neutral-200 shadow-md flex-1 min-h-0 flex flex-col justify-between overflow-hidden">
             <div>
               {/* Header with 34/34 Badge */}
               <div className="flex items-center justify-between gap-3 mb-2.5">
@@ -484,7 +487,7 @@ export default function VietnamMap() {
                 />
               </div>
 
-              {/* 2-Column Scrollable Grid with overscroll-contain */}
+              {/* 2-Column Scrollable Grid with overscroll-contain and uniform button heights */}
               <div 
                 className="grid grid-cols-2 gap-1.5 h-[340px] sm:h-[370px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-[#810100] scrollbar-track-neutral-200"
                 style={{ overscrollBehavior: 'contain' }}
@@ -497,15 +500,15 @@ export default function VietnamMap() {
                       onMouseEnter={() => setHoveredUnitId(u.id)}
                       onMouseLeave={() => setHoveredUnitId(null)}
                       onClick={() => setSelectedUnitId(u.id)}
-                      className={`text-left px-2.5 py-2 rounded-xl text-xs font-medium transition-colors duration-75 flex items-center justify-between gap-1 border ${
+                      className={`text-left px-2.5 h-[38px] rounded-xl text-xs font-medium flex items-center justify-between gap-1 border shrink-0 transition-colors duration-75 ${
                         isActive
                           ? 'bg-[#810100] text-white font-bold border-[#810100] shadow-sm'
                           : 'bg-white hover:bg-neutral-100 text-neutral-700 border-neutral-200/80 hover:border-[#810100]/30'
                       }`}
                     >
-                      <span className="truncate">
-                        <span className="opacity-60 text-[10px] mr-1">#{u.id}</span>
-                        {u.shortName || u.name}
+                      <span className="truncate min-w-0 flex items-center">
+                        <span className="opacity-60 text-[10px] mr-1 shrink-0">#{u.id}</span>
+                        <span className="truncate">{u.shortName || u.name}</span>
                       </span>
                       {isActive && <CheckCircle2 className="w-3 h-3 text-[#FFD700] shrink-0" />}
                     </button>
