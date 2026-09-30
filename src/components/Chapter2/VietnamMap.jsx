@@ -144,7 +144,7 @@ export default function VietnamMap() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
         
         {/* SVG Map Container - Fixed Height */}
-        <div className="lg:col-span-7 relative bg-[#FAF9F5] rounded-2xl p-2 sm:p-4 border border-neutral-300/80 shadow-inner flex flex-col justify-between overflow-hidden h-[740px] lg:h-[820px]">
+        <div className="lg:col-span-7 relative bg-[#FAF9F5] rounded-2xl p-2 sm:p-4 border border-neutral-300/80 shadow-inner flex flex-col justify-between overflow-hidden h-[780px] lg:h-[900px]">
           
           {/* Zoom & View Controls Overlay */}
           <div className="absolute top-4 left-4 z-20 flex flex-col gap-1.5 bg-white/90 p-1.5 rounded-xl border border-neutral-200/90 shadow-md backdrop-blur-sm">
@@ -375,18 +375,18 @@ export default function VietnamMap() {
         </div>
 
         {/* Right Column: Generous Height to Comfortably Fit All 34 Units Without Any Clipping */}
-        <div className="lg:col-span-5 flex flex-col justify-between h-[820px] lg:h-[870px] space-y-4">
+        <div className="lg:col-span-5 flex flex-col justify-between h-[860px] lg:h-[900px] space-y-4">
           
           {/* =========================================================
               BOX 1: Card Chi Tiết Đơn Vị Được Chọn
-              Strict locked height and truncated subtitle so hover NEVER changes height or causes jitter!
+              Strict locked height and generous breathing room so status is never stuck at bottom!
              ========================================================= */}
-          <div className="bg-white rounded-3xl p-5 sm:p-6 border border-neutral-200/90 shadow-xl relative h-[365px] max-h-[365px] shrink-0 flex flex-col justify-between overflow-hidden">
+          <div className="bg-white rounded-3xl p-5 sm:p-6 border border-neutral-200/90 shadow-xl relative h-[415px] max-h-[415px] shrink-0 flex flex-col justify-between overflow-hidden">
             <div className="absolute top-0 right-0 w-24 h-24 bg-[#810100]/5 rounded-bl-full pointer-events-none" />
 
             <div>
               {/* Badge & ID */}
-              <div className="flex items-center justify-between gap-2 mb-2">
+              <div className="flex items-center justify-between gap-2 mb-2.5">
                 <span className={`px-2.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider leading-normal inline-flex items-center ${
                   currentUnit.isMerged 
                     ? 'bg-amber-100 text-amber-900 border border-amber-300' 
@@ -436,7 +436,7 @@ export default function VietnamMap() {
             </div>
 
             {/* Bottom info section: Extended box with generous spacing, border, and clear margin from edge */}
-            <div className="p-3 sm:p-3.5 rounded-2xl bg-[#FAF9F5] border border-neutral-200/80 space-y-2 text-[12px] mt-2 mb-0.5">
+            <div className="p-3.5 sm:p-4 rounded-2xl bg-[#FAF9F5] border border-neutral-200/80 space-y-2.5 text-[12px] mt-2 mb-1">
               <div className="flex items-center justify-between gap-2">
                 <span className="text-neutral-500 shrink-0">Mô hình:</span>
                 <span className="font-bold text-neutral-800 text-right leading-tight">Chính quyền địa phương 2 cấp</span>
@@ -447,9 +447,9 @@ export default function VietnamMap() {
                   {currentUnit.oldNames.join(', ')}
                 </span>
               </div>
-              <div className="flex items-center justify-between gap-2 pt-1.5 border-t border-neutral-200/60">
+              <div className="flex items-center justify-between gap-2 pt-2 border-t border-neutral-200/70">
                 <span className="text-neutral-500 shrink-0 font-medium">Trạng thái:</span>
-                <span className={`font-bold px-2 py-0.5 rounded-md text-[11px] uppercase tracking-wide ${
+                <span className={`font-bold px-2.5 py-1 rounded-md text-[11px] uppercase tracking-wide ${
                   currentUnit.isMerged ? 'bg-amber-100 text-amber-800 border border-amber-200' : 'bg-green-100 text-green-800 border border-green-200'
                 }`}>
                   {currentUnit.isMerged ? 'Sau sắp xếp' : 'Giữ nguyên'}
@@ -489,7 +489,7 @@ export default function VietnamMap() {
 
               {/* 2-Column Scrollable Grid with overscroll-contain and uniform button heights */}
               <div 
-                className="grid grid-cols-2 gap-1.5 h-[340px] sm:h-[370px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-[#810100] scrollbar-track-neutral-200"
+                className="grid grid-cols-2 gap-1.5 h-[310px] sm:h-[330px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-[#810100] scrollbar-track-neutral-200"
                 style={{ overscrollBehavior: 'contain' }}
               >
                 {filteredUnits.map((u) => {
